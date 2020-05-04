@@ -2,20 +2,32 @@ package com.cg.backgroundverification.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="document")
+@Table(name="documentt1")
 public class EmployeeDocumentDto
 {
+   
+    int empId;
+    String empName;
     @Id
-     private int empId;
-    private  String empName;
-    @GeneratedValue
-    private int docId;
-    private String docType;
+   @GeneratedValue
+  int docId;
+    String docType;
     @Lob
-    private  byte[] docData;
+    byte[] docData;
+    @OneToOne
+    @JoinColumn(name="verfId")
+    VerificationDto verificationdto;
+    public VerificationDto getVerificationdto() {
+		return verificationdto;
+	}
+	public void setVerificationdto(VerificationDto verificationdto) {
+		this.verificationdto = verificationdto;
+	}
 	public int getEmpId() {
 		return empId;
 	}
@@ -46,5 +58,6 @@ public class EmployeeDocumentDto
 	public void setDocData(byte[] docData) {
 		this.docData = docData;
 	}
-	
+    
+    	    
 }
